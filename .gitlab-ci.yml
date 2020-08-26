@@ -7,13 +7,13 @@ stages:
 build:
   stage: build
   tags: 
-  - shared
+  - shared-windows
   script:
     - dotnet build
 
 test:
   stage: test
   tags: 
-  - shared
+  - shared-windows
   script:
     - dotnet test
