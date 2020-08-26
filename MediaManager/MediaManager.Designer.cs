@@ -32,6 +32,7 @@
             this.extractAudioBT = new System.Windows.Forms.Button();
             this.filesListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
+            this.clearListBT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // selectFolderBT
@@ -44,6 +45,7 @@
             this.selectFolderBT.TabIndex = 0;
             this.selectFolderBT.Text = "Select Folder";
             this.selectFolderBT.UseVisualStyleBackColor = false;
+            this.selectFolderBT.Click += new System.EventHandler(this.selectFolderBT_Click);
             // 
             // extractAudioBT
             // 
@@ -55,6 +57,7 @@
             this.extractAudioBT.TabIndex = 1;
             this.extractAudioBT.Text = "Extract audio";
             this.extractAudioBT.UseVisualStyleBackColor = false;
+            this.extractAudioBT.Click += new System.EventHandler(this.extractAudioBT_Click);
             // 
             // filesListView
             // 
@@ -64,6 +67,7 @@
             this.filesListView.Size = new System.Drawing.Size(747, 181);
             this.filesListView.TabIndex = 2;
             this.filesListView.UseCompatibleStateImageBehavior = false;
+            this.filesListView.View = System.Windows.Forms.View.List;
             // 
             // label1
             // 
@@ -74,11 +78,25 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Matched files:";
             // 
+            // clearListBT
+            // 
+            this.clearListBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.clearListBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearListBT.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.clearListBT.Location = new System.Drawing.Point(175, 34);
+            this.clearListBT.Name = "clearListBT";
+            this.clearListBT.Size = new System.Drawing.Size(98, 23);
+            this.clearListBT.TabIndex = 4;
+            this.clearListBT.Text = "Clear list";
+            this.clearListBT.UseVisualStyleBackColor = false;
+            this.clearListBT.Click += new System.EventHandler(this.clearListBT_Click);
+            // 
             // MediaManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.clearListBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filesListView);
             this.Controls.Add(this.extractAudioBT);
@@ -96,6 +114,7 @@
         private System.Windows.Forms.Button extractAudioBT;
         private System.Windows.Forms.ListView filesListView;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button clearListBT;
     }
 }
 
