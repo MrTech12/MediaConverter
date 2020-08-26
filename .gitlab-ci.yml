@@ -1,0 +1,19 @@
+image : mcr.microsoft.com/dotnet/core/sdk:latest
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  tags: 
+  - shared
+  script:
+    - dotnet build
+
+test:
+  stage: test
+  tags: 
+  - shared
+  script:
+    - dotnet test

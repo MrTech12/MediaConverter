@@ -9,6 +9,9 @@ namespace BusinessLogicLayer
         private string[] selectedFiles;
         private List<string> audioFilename = new List<string>();
 
+        public string[] SelectedFiles { get { return this.selectedFiles; } set { this.selectedFiles = value; } }
+        public List<string> AudioFilename { get { return this.audioFilename; } set { this.audioFilename = value; } }
+
         public AudioLogic(string[] selectedFiles)
         {
             this.selectedFiles = selectedFiles;
