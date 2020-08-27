@@ -8,7 +8,6 @@ build:
   stage: build
   tags: 
   - shared-windows
-  - AMD4PC
   script:
     - dotnet build
 
@@ -16,6 +15,5 @@ test:
   stage: test
   tags: 
   - shared-windows
-  - AMD4PC
   script:
     - dotnet test
