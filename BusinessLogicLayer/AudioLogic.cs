@@ -17,9 +17,10 @@ namespace BusinessLogicLayer
             this.selectedFiles = selectedFiles;
         }
 
-        public override void PrepareAudioFilename()
+        //TODO: add ability for more media filetypes, other than mp4.
+        public override void CreateFilename()
         {
-            foreach (var item in selectedFiles)
+            foreach (var item in this.selectedFiles)
             {
                 audioFilename.Add(item.Replace(".mp4", ".mp3"));
             }
@@ -27,11 +28,12 @@ namespace BusinessLogicLayer
 
         public void ExtractAudio()
         {
-            PrepareAudioFilename();
+            CreateFilename();
 
-            for (int i = 0; i < selectedFiles.Length; i++)
+            for (int i = 0; i < this.selectedFiles.Length; i++)
             {
-                string command = @"/C ffmpeg -i " + "\"" + selectedFiles[i] + "\"" + " " + "\"" + audioFilename[i] + "\"";
+                //TODO: change to a safer method to add arguments to a commandline application.
+                string command = @"/C ffmpeg -i " + "\"" + this.selectedFiles[i] + "\"" + " " + "\"" + this.audioFilename[i] + "\"";
                 Process process = Process.Start("CMD.exe", command);
                 process.WaitForExit();
             }

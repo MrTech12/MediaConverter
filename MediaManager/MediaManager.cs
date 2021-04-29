@@ -37,9 +37,10 @@ namespace MediaManager
 
         private void clearListBT_Click(object sender, EventArgs e)
         {
-            ClearCollections();
+            ClearFileList();
         }
 
+        //TODO: add ability to detect more media filetypes, other than mp4.
         public void GetFileDetails()
         {
             if (folderBrowser.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
@@ -48,7 +49,7 @@ namespace MediaManager
 
                 foreach (var item in filePaths)
                 {
-                    fileNames.Add(item.Replace(folderBrowser.SelectedPath, String.Empty).Replace(@"\", ""));
+                    fileNames.Add(item.Replace(folderBrowser.SelectedPath, String.Empty).Replace(@"\", "")); //Display the filenames, with the absolute path.
                 }
             }
         }
@@ -72,13 +73,12 @@ namespace MediaManager
                 AudioLogic audioLogic = new AudioLogic(filePaths);
                 audioLogic.ExtractAudio();
 
-                ClearCollections();
-
+                ClearFileList();
                 MessageBox.Show("Audio extracted");
             }
         }
 
-        public void ClearCollections()
+        public void ClearFileList()
         {
             Array.Clear(filePaths, 0, filePaths.Length);
             fileNames.Clear();

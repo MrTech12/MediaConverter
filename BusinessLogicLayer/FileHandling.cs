@@ -6,6 +6,6 @@ namespace BusinessLogicLayer
 {
     public abstract class FileHandling
     {
-        public abstract void PrepareAudioFilename();
+        public abstract void CreateFilename();
     }
 }

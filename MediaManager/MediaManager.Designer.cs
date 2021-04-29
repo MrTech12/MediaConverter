@@ -43,7 +43,7 @@
             this.selectFolderBT.Name = "selectFolderBT";
             this.selectFolderBT.Size = new System.Drawing.Size(93, 23);
             this.selectFolderBT.TabIndex = 0;
-            this.selectFolderBT.Text = "Select Folder";
+            this.selectFolderBT.Text = "Select folder";
             this.selectFolderBT.UseVisualStyleBackColor = false;
             this.selectFolderBT.Click += new System.EventHandler(this.selectFolderBT_Click);
             // 
@@ -51,7 +51,7 @@
             // 
             this.extractAudioBT.BackColor = System.Drawing.Color.Lime;
             this.extractAudioBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.extractAudioBT.Location = new System.Drawing.Point(41, 75);
+            this.extractAudioBT.Location = new System.Drawing.Point(169, 34);
             this.extractAudioBT.Name = "extractAudioBT";
             this.extractAudioBT.Size = new System.Drawing.Size(93, 23);
             this.extractAudioBT.TabIndex = 1;
@@ -62,9 +62,9 @@
             // filesListView
             // 
             this.filesListView.HideSelection = false;
-            this.filesListView.Location = new System.Drawing.Point(41, 257);
+            this.filesListView.Location = new System.Drawing.Point(12, 257);
             this.filesListView.Name = "filesListView";
-            this.filesListView.Size = new System.Drawing.Size(747, 181);
+            this.filesListView.Size = new System.Drawing.Size(776, 181);
             this.filesListView.TabIndex = 2;
             this.filesListView.UseCompatibleStateImageBehavior = false;
             this.filesListView.View = System.Windows.Forms.View.List;
@@ -72,20 +72,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 228);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 222);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 15);
+            this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Matched files:";
+            this.label1.Text = "Matched files";
             // 
             // clearListBT
             // 
             this.clearListBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.clearListBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearListBT.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.clearListBT.Location = new System.Drawing.Point(175, 34);
+            this.clearListBT.Location = new System.Drawing.Point(41, 78);
             this.clearListBT.Name = "clearListBT";
-            this.clearListBT.Size = new System.Drawing.Size(98, 23);
+            this.clearListBT.Size = new System.Drawing.Size(93, 23);
             this.clearListBT.TabIndex = 4;
             this.clearListBT.Text = "Clear list";
             this.clearListBT.UseVisualStyleBackColor = false;
