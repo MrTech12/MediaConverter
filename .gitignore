@@ -360,3 +360,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# FFmpeg executable
+BusinessLogicLayer/ffmpeg.exe

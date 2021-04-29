@@ -49,7 +49,7 @@ namespace MediaManager
 
                 foreach (var item in filePaths)
                 {
-                    fileNames.Add(item.Replace(folderBrowser.SelectedPath, String.Empty).Replace(@"\", "")); //Display the filenames, with the absolute path.
+                    fileNames.Add(item.Replace(folderBrowser.SelectedPath, String.Empty).Replace(@"\", "")); //Only display the filenames.
                 }
             }
         }
