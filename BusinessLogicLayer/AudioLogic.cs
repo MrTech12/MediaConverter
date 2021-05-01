@@ -1,40 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace BusinessLogicLayer
 {
     public class AudioLogic : FileHandling
     {
-        private string[] selectedFiles;
-        private List<string> audioFilename = new List<string>();
+        private List<string> selectedFiles = new List<string>();
+        private List<string> audioFiles = new List<string>();
 
-        public string[] SelectedFiles { get { return this.selectedFiles; } set { this.selectedFiles = value; } }
-        public List<string> AudioFilename { get { return this.audioFilename; } set { this.audioFilename = value; } }
+        public List<string> SelectedFiles { get { return this.selectedFiles; } set { this.selectedFiles = value; } }
+        public List<string> AudioFiles { get { return this.audioFiles; } set { this.audioFiles = value; } }
 
-        public AudioLogic(string[] selectedFiles)
+        public AudioLogic(List<string> selectedFiles)
         {
             this.selectedFiles = selectedFiles;
         }
 
-        //TODO: add ability for more media filetypes, other than mp4.
-        public override void CreateFilename()
+        //TODO: convert to different audio files, other than mp3.
+        public override void ChangeFiletype(string newFiletype)
         {
             foreach (var item in this.selectedFiles)
             {
-                audioFilename.Add(item.Replace(".mp4", ".mp3"));
+                int dotIndex = item.IndexOf(".");
+                string filename = item.Substring(0, dotIndex);
+                if (newFiletype == "wav")
+                {
+                    filename += ".wav";
+                }
+                else if (newFiletype == "mp3")
+                {
+                    filename += ".mp3";
+                }
+                audioFiles.Add(filename);
             }
         }
 
-        public void ExtractAudio()
+        public override void CreateNewFile()
         {
-            CreateFilename();
+            Process process = new Process();
+            process.StartInfo.FileName = "ffmpeg.exe";
 
-            for (int i = 0; i < this.selectedFiles.Length; i++)
+            for (int i = 0; i < this.selectedFiles.Count; i++)
             {
-                //TODO: change to a safer method to add arguments to a commandline application.
-                string command = @"/C ffmpeg -i " + "\"" + this.selectedFiles[i] + "\"" + " " + "\"" + this.audioFilename[i] + "\"";
-                Process process = Process.Start("CMD.exe", command);
+                process.StartInfo.Arguments = String.Format(@"-i ""{0}"" ""{1}""", this.selectedFiles[i], this.audioFiles[i]);
+                process.Start();
                 process.WaitForExit();
             }
         }

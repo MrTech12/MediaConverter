@@ -14,10 +14,10 @@ namespace MediaManager
 {
     public partial class MediaManager : Form
     {
-        string[] filePaths;
+        List<string> filePaths = new List<string>();
         List<string> fileNames = new List<string>();
 
-        FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+        OpenFileDialog fileDialog = new OpenFileDialog();
 
         public MediaManager()
         {
@@ -26,13 +26,13 @@ namespace MediaManager
 
         private void selectFolderBT_Click(object sender, EventArgs e)
         {
-            GetFileDetails();
-            ShowFiles();
+            GetSelectedFile();
+            ShowFileName();
         }
 
         private void extractAudioBT_Click(object sender, EventArgs e)
         {
-            ExtractAudio();
+            ExtractAudio(audioCB.GetItemText(audioCB.SelectedItem));
         }
 
         private void clearListBT_Click(object sender, EventArgs e)
@@ -40,21 +40,27 @@ namespace MediaManager
             ClearFileList();
         }
 
-        //TODO: add ability to detect more media filetypes, other than mp4.
-        public void GetFileDetails()
+        //TODO: add ability to detect more media filetypes.
+        public void GetSelectedFile()
         {
-            if (folderBrowser.ShowDialog() == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
+            fileDialog.Filter = "All Media Files|*.wav;*.mp3;*.avi;*.mov;*.mp4;*.WAV;*.MP3;*.AVI;*.MOV;*.MP4;";
+            fileDialog.Multiselect = true;
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                filePaths = Directory.GetFiles(folderBrowser.SelectedPath, "*.mp4");
+                if (fileDialog.FileNames.Length != 0)
+                {
+                    filePaths = fileDialog.FileNames.ToList();
+                }
 
                 foreach (var item in filePaths)
                 {
-                    fileNames.Add(item.Replace(folderBrowser.SelectedPath, String.Empty).Replace(@"\", "")); //Only display the filenames.
+                    fileNames = fileDialog.SafeFileNames.ToList(); //Storing only the filenames, not the full path.
                 }
             }
         }
 
-        private void ShowFiles()
+        private void ShowFileName()
         {
             foreach (var item in fileNames)
             {
@@ -62,16 +68,21 @@ namespace MediaManager
             }
         }
 
-        public void ExtractAudio()
+        public void ExtractAudio(string type)
         {
             if (filesListView.Items.Count == 0)
             {
-                MessageBox.Show("No folder selected.");
+                MessageBox.Show("No files selected.");
+            }
+            else if(audioCB.SelectedIndex < 0)
+            {
+                MessageBox.Show("No audio type selected.");
             }
             else
             {
                 AudioLogic audioLogic = new AudioLogic(filePaths);
-                audioLogic.ExtractAudio();
+                audioLogic.ChangeFiletype(type);
+                audioLogic.CreateNewFile();
 
                 ClearFileList();
                 MessageBox.Show("Audio extracted");
@@ -80,7 +91,7 @@ namespace MediaManager
 
         public void ClearFileList()
         {
-            Array.Clear(filePaths, 0, filePaths.Length);
+            filePaths.Clear();
             fileNames.Clear();
             filesListView.Items.Clear();
         }

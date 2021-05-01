@@ -33,6 +33,8 @@
             this.filesListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.clearListBT = new System.Windows.Forms.Button();
+            this.audioCB = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // selectFolderBT
@@ -51,9 +53,9 @@
             // 
             this.extractAudioBT.BackColor = System.Drawing.Color.Lime;
             this.extractAudioBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.extractAudioBT.Location = new System.Drawing.Point(169, 34);
+            this.extractAudioBT.Location = new System.Drawing.Point(677, 52);
             this.extractAudioBT.Name = "extractAudioBT";
-            this.extractAudioBT.Size = new System.Drawing.Size(93, 23);
+            this.extractAudioBT.Size = new System.Drawing.Size(92, 23);
             this.extractAudioBT.TabIndex = 1;
             this.extractAudioBT.Text = "Extract audio";
             this.extractAudioBT.UseVisualStyleBackColor = false;
@@ -75,9 +77,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 222);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 20);
+            this.label1.Size = new System.Drawing.Size(115, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Matched files";
+            this.label1.Text = "Matched file(s)";
             // 
             // clearListBT
             // 
@@ -92,11 +94,33 @@
             this.clearListBT.UseVisualStyleBackColor = false;
             this.clearListBT.Click += new System.EventHandler(this.clearListBT_Click);
             // 
+            // audioCB
+            // 
+            this.audioCB.FormattingEnabled = true;
+            this.audioCB.Items.AddRange(new object[] {
+            "wav",
+            "mp3"});
+            this.audioCB.Location = new System.Drawing.Point(531, 52);
+            this.audioCB.Name = "audioCB";
+            this.audioCB.Size = new System.Drawing.Size(106, 23);
+            this.audioCB.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(531, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Choose audio type";
+            // 
             // MediaManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.audioCB);
             this.Controls.Add(this.clearListBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filesListView);
@@ -116,6 +140,8 @@
         private System.Windows.Forms.ListView filesListView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clearListBT;
+        private System.Windows.Forms.ComboBox audioCB;
+        private System.Windows.Forms.Label label2;
     }
 }
 
