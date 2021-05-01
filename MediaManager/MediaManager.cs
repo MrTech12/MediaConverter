@@ -66,12 +66,13 @@ namespace MediaManager
         {
             if (filesListView.Items.Count == 0)
             {
-                MessageBox.Show("No folder selected.");
+                MessageBox.Show("No files selected.");
             }
             else
             {
                 AudioLogic audioLogic = new AudioLogic(filePaths);
-                audioLogic.ExtractAudio();
+                audioLogic.CreateNewFilename();
+                audioLogic.CreateNewFile();
 
                 ClearFileList();
                 MessageBox.Show("Audio extracted");

@@ -21,7 +21,7 @@ namespace MediaManagerTest
 
             // act
             before = audioLogic.AudioFilename.Count;
-            audioLogic.CreateFilename();
+            audioLogic.CreateNewFilename();
             after = audioLogic.AudioFilename.Count;
             audioFiles = audioLogic.AudioFilename;
 

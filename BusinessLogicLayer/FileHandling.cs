@@ -6,6 +6,8 @@ namespace BusinessLogicLayer
 {
     public abstract class FileHandling
     {
-        public abstract void CreateFilename();
+        public abstract void CreateNewFilename();
+
+        public abstract void CreateNewFile();
     }
 }

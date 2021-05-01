@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace BusinessLogicLayer
 {
@@ -17,24 +18,26 @@ namespace BusinessLogicLayer
             this.selectedFiles = selectedFiles;
         }
 
-        //TODO: add ability for more media filetypes, other than mp4.
-        public override void CreateFilename()
+        //TODO: convert to different audio files, other than mp3.
+        public override void CreateNewFilename()
         {
             foreach (var item in this.selectedFiles)
             {
-                audioFilename.Add(item.Replace(".mp4", ".mp3"));
+                int index = item.IndexOf(".");
+                string filename = item.Substring(0, index) + ".mp3";
+                audioFilename.Add(filename);
             }
         }
 
-        public void ExtractAudio()
+        public override void CreateNewFile()
         {
-            CreateFilename();
+            Process process = new Process();
+            process.StartInfo.FileName = "ffmpeg.exe";
 
             for (int i = 0; i < this.selectedFiles.Length; i++)
             {
-                //TODO: change to a safer method to add arguments to a commandline application.
-                string command = @"/C ffmpeg -i " + "\"" + this.selectedFiles[i] + "\"" + " " + "\"" + this.audioFilename[i] + "\"";
-                Process process = Process.Start("CMD.exe", command);
+                process.StartInfo.Arguments = String.Format(@"-i ""{0}"" ""{1}""", this.selectedFiles[i], this.audioFilename[i]);
+                process.Start();
                 process.WaitForExit();
             }
         }

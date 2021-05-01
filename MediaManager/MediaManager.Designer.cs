@@ -51,11 +51,11 @@
             // 
             this.extractAudioBT.BackColor = System.Drawing.Color.Lime;
             this.extractAudioBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.extractAudioBT.Location = new System.Drawing.Point(169, 34);
+            this.extractAudioBT.Location = new System.Drawing.Point(162, 31);
             this.extractAudioBT.Name = "extractAudioBT";
-            this.extractAudioBT.Size = new System.Drawing.Size(93, 23);
+            this.extractAudioBT.Size = new System.Drawing.Size(130, 29);
             this.extractAudioBT.TabIndex = 1;
-            this.extractAudioBT.Text = "Extract audio";
+            this.extractAudioBT.Text = "Extract audio to mp3";
             this.extractAudioBT.UseVisualStyleBackColor = false;
             this.extractAudioBT.Click += new System.EventHandler(this.extractAudioBT_Click);
             // 
@@ -75,9 +75,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 222);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 20);
+            this.label1.Size = new System.Drawing.Size(115, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Matched files";
+            this.label1.Text = "Matched file(s)";
             // 
             // clearListBT
             // 
