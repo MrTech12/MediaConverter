@@ -32,7 +32,7 @@ namespace MediaManager
 
         private void extractAudioBT_Click(object sender, EventArgs e)
         {
-            ExtractAudio();
+            ExtractAudio(audioCB.GetItemText(audioCB.SelectedItem));
         }
 
         private void clearListBT_Click(object sender, EventArgs e)
@@ -62,16 +62,20 @@ namespace MediaManager
             }
         }
 
-        public void ExtractAudio()
+        public void ExtractAudio(string type)
         {
             if (filesListView.Items.Count == 0)
             {
                 MessageBox.Show("No files selected.");
             }
+            else if(audioCB.SelectedIndex < 0)
+            {
+                MessageBox.Show("No audio type selected.");
+            }
             else
             {
                 AudioLogic audioLogic = new AudioLogic(filePaths);
-                audioLogic.CreateNewFilename();
+                audioLogic.ChangeFiletype(type);
                 audioLogic.CreateNewFile();
 
                 ClearFileList();

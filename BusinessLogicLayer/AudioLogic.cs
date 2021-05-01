@@ -8,10 +8,10 @@ namespace BusinessLogicLayer
     public class AudioLogic : FileHandling
     {
         private string[] selectedFiles;
-        private List<string> audioFilename = new List<string>();
+        private List<string> audioFiles = new List<string>();
 
         public string[] SelectedFiles { get { return this.selectedFiles; } set { this.selectedFiles = value; } }
-        public List<string> AudioFilename { get { return this.audioFilename; } set { this.audioFilename = value; } }
+        public List<string> AudioFiles { get { return this.audioFiles; } set { this.audioFiles = value; } }
 
         public AudioLogic(string[] selectedFiles)
         {
@@ -19,13 +19,21 @@ namespace BusinessLogicLayer
         }
 
         //TODO: convert to different audio files, other than mp3.
-        public override void CreateNewFilename()
+        public override void ChangeFiletype(string newFiletype)
         {
             foreach (var item in this.selectedFiles)
             {
-                int index = item.IndexOf(".");
-                string filename = item.Substring(0, index) + ".mp3";
-                audioFilename.Add(filename);
+                int dotIndex = item.IndexOf(".");
+                string filename = item.Substring(0, dotIndex);
+                if (newFiletype == "wav")
+                {
+                    filename += ".wav";
+                }
+                else if (newFiletype == "mp3")
+                {
+                    filename += ".mp3";
+                }
+                audioFiles.Add(filename);
             }
         }
 
@@ -36,7 +44,7 @@ namespace BusinessLogicLayer
 
             for (int i = 0; i < this.selectedFiles.Length; i++)
             {
-                process.StartInfo.Arguments = String.Format(@"-i ""{0}"" ""{1}""", this.selectedFiles[i], this.audioFilename[i]);
+                process.StartInfo.Arguments = String.Format(@"-i ""{0}"" ""{1}""", this.selectedFiles[i], this.audioFiles[i]);
                 process.Start();
                 process.WaitForExit();
             }
