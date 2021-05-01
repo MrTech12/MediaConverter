@@ -8,7 +8,12 @@ The application makes use of FFmpeg to perform the conversion work.
 
 ---
 
-## Limitations (as of 29-4-2021)
-* The application can only detect mp4 files in the source directory.
-* The application can only convert to mp3 files.
+## Limitations (as of 1-5-2021)
+* The application can only detect the following files to convert:
+    * wav & WAV
+    * mp3 & MP3
+    * avi & AVI
+    * mov & MOV
+    * mp4 & MP4
+* The application can only convert to mp3 or wav files.
 * The application does not automatically download a copy of FFmpeg.

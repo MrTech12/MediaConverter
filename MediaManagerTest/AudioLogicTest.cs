@@ -16,8 +16,8 @@ namespace MediaManagerTest
         {
             // arrange
             List<string> audioFiles = new List<string>();
-            string[] files = new string[] { "1.mp4", "2.mp4" };
-            audioLogic = new AudioLogic(files);
+            List<string> selectedFiles = new List<string>() { "1.mp4", "2.mp4" };
+            audioLogic = new AudioLogic(selectedFiles);
 
             // act
             before = audioLogic.AudioFiles.Count;
@@ -36,8 +36,8 @@ namespace MediaManagerTest
         {
             // arrange
             List<string> audioFiles = new List<string>();
-            string[] files = new string[] { "test1.mp4", "test2.mp4" };
-            audioLogic = new AudioLogic(files);
+            List<string> selectedFiles = new List<string>() { "test1.mp4", "test2.mp4" };
+            audioLogic = new AudioLogic(selectedFiles);
 
             // act
             before = audioLogic.AudioFiles.Count;
