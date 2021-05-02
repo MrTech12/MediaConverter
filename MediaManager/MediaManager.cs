@@ -80,7 +80,7 @@ namespace MediaManager
                 audioFileHandling.CreateNewFile();
 
                 ClearFileList();
-                MessageBox.Show("Audio extracted");
+                MessageBox.Show("Audio extracted.");
             }
         }
 
@@ -104,6 +104,7 @@ namespace MediaManager
             filePaths.Clear();
             fileNames.Clear();
             filesListView.Items.Clear();
+            selectedAudioTypes.Clear();
         }
     }
 }
