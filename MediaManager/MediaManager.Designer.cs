@@ -33,7 +33,7 @@
             this.filesListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.clearListBT = new System.Windows.Forms.Button();
-            this.audioCB = new System.Windows.Forms.ComboBox();
+            this.audioFiletypeCB = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -94,16 +94,16 @@
             this.clearListBT.UseVisualStyleBackColor = false;
             this.clearListBT.Click += new System.EventHandler(this.clearListBT_Click);
             // 
-            // audioCB
+            // audioFiletypeCB
             // 
-            this.audioCB.FormattingEnabled = true;
-            this.audioCB.Items.AddRange(new object[] {
+            this.audioFiletypeCB.FormattingEnabled = true;
+            this.audioFiletypeCB.Items.AddRange(new object[] {
             "wav",
             "mp3"});
-            this.audioCB.Location = new System.Drawing.Point(531, 52);
-            this.audioCB.Name = "audioCB";
-            this.audioCB.Size = new System.Drawing.Size(106, 23);
-            this.audioCB.TabIndex = 5;
+            this.audioFiletypeCB.Location = new System.Drawing.Point(531, 52);
+            this.audioFiletypeCB.Name = "audioFiletypeCB";
+            this.audioFiletypeCB.Size = new System.Drawing.Size(106, 23);
+            this.audioFiletypeCB.TabIndex = 5;
             // 
             // label2
             // 
@@ -120,7 +120,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.audioCB);
+            this.Controls.Add(this.audioFiletypeCB);
             this.Controls.Add(this.clearListBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filesListView);
@@ -140,7 +140,7 @@
         private System.Windows.Forms.ListView filesListView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clearListBT;
-        private System.Windows.Forms.ComboBox audioCB;
+        private System.Windows.Forms.ComboBox audioFiletypeCB;
         private System.Windows.Forms.Label label2;
     }
 }

@@ -1,4 +1,4 @@
-using BusinessLogicLayer;
+using BusinessLogicLayer.Audio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -7,7 +7,8 @@ namespace MediaManagerTest
     [TestClass]
     public class AudioLogicTest
     {
-        AudioLogic audioLogic;
+        AudioFileHandling audioFileHandling;
+        private List<AudioType> selectedAudioTypes = new List<AudioType>();
         int before;
         int after;
 
@@ -16,19 +17,20 @@ namespace MediaManagerTest
         {
             // arrange
             List<string> audioFiles = new List<string>();
-            List<string> selectedFiles = new List<string>() { "1.mp4", "2.mp4" };
-            audioLogic = new AudioLogic(selectedFiles);
+            selectedAudioTypes.Add(new TypeWAV());
+            List<string> selectedFilePaths = new List<string>() { @"C:\tmp\1.mp4", @"C:\tmp\2.mp4" };
+            audioFileHandling = new AudioFileHandling(selectedFilePaths, selectedAudioTypes);
 
             // act
-            before = audioLogic.AudioFiles.Count;
-            audioLogic.ChangeFiletype("wav");
-            after = audioLogic.AudioFiles.Count;
-            audioFiles = audioLogic.AudioFiles;
+            before = audioFileHandling.AudioFiles.Count;
+            audioFileHandling.ChangeFiletype();
+            after = audioFileHandling.AudioFiles.Count;
+            audioFiles = audioFileHandling.AudioFiles;
 
             // assert
             Assert.AreEqual(0, before);
             Assert.AreEqual(2, after);
-            Assert.AreEqual("1.wav", audioFiles[0]);
+            Assert.AreEqual(@"C:\tmp\1.wav", audioFiles[0]);
         }
 
         [TestMethod]
@@ -36,19 +38,20 @@ namespace MediaManagerTest
         {
             // arrange
             List<string> audioFiles = new List<string>();
-            List<string> selectedFiles = new List<string>() { "test1.mp4", "test2.mp4" };
-            audioLogic = new AudioLogic(selectedFiles);
+            selectedAudioTypes.Add(new TypeMP3());
+            List<string> selectedFilePaths = new List<string>() { "C:\tmp\test1.mp4", "C:\tmp\test2.mp4" };
+            audioFileHandling = new AudioFileHandling(selectedFilePaths, selectedAudioTypes);
 
             // act
-            before = audioLogic.AudioFiles.Count;
-            audioLogic.ChangeFiletype("mp3");
-            after = audioLogic.AudioFiles.Count;
-            audioFiles = audioLogic.AudioFiles;
+            before = audioFileHandling.AudioFiles.Count;
+            audioFileHandling.ChangeFiletype();
+            after = audioFileHandling.AudioFiles.Count;
+            audioFiles = audioFileHandling.AudioFiles;
 
             // assert
             Assert.AreEqual(0, before);
             Assert.AreEqual(2, after);
-            Assert.AreEqual("test2.mp3", audioFiles[1]);
+            Assert.AreEqual("C:\tmp\test2.mp3", audioFiles[1]);
         }
     }
 }
