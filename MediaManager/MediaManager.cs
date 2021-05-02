@@ -1,19 +1,14 @@
-﻿using BusinessLogicLayer;
+﻿using BusinessLogicLayer.Audio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MediaManager
 {
     public partial class MediaManager : Form
     {
+        List<AudioType> selectedAudioTypes = new List<AudioType>();
         List<string> filePaths = new List<string>();
         List<string> fileNames = new List<string>();
 
@@ -32,7 +27,7 @@ namespace MediaManager
 
         private void extractAudioBT_Click(object sender, EventArgs e)
         {
-            ExtractAudio(audioCB.GetItemText(audioCB.SelectedItem));
+            ExtractAudio(audioFiletypeCB.GetItemText(audioFiletypeCB.SelectedItem));
         }
 
         private void clearListBT_Click(object sender, EventArgs e)
@@ -68,25 +63,40 @@ namespace MediaManager
             }
         }
 
-        public void ExtractAudio(string type)
+        public void ExtractAudio(string filetype)
         {
-            if (filesListView.Items.Count == 0)
+            if(!CheckEmptyInput())
             {
-                MessageBox.Show("No files selected.");
-            }
-            else if(audioCB.SelectedIndex < 0)
-            {
-                MessageBox.Show("No audio type selected.");
-            }
-            else
-            {
-                AudioLogic audioLogic = new AudioLogic(filePaths);
-                audioLogic.ChangeFiletype(type);
-                audioLogic.CreateNewFile();
+                if (filetype == "wav")
+                {
+                    selectedAudioTypes.Add(new TypeWAV());
+                }
+                else if (filetype == "mp3")
+                {
+                    selectedAudioTypes.Add(new TypeMP3());
+                }
+                AudioFileHandling audioFileHandling = new AudioFileHandling(filePaths, selectedAudioTypes);
+                audioFileHandling.ChangeFiletype();
+                audioFileHandling.CreateNewFile();
 
                 ClearFileList();
                 MessageBox.Show("Audio extracted");
             }
+        }
+
+        public bool CheckEmptyInput()
+        {
+            if (filesListView.Items.Count == 0)
+            {
+                MessageBox.Show("No files selected.");
+                return true;
+            }
+            else if (audioFiletypeCB.SelectedIndex < 0)
+            {
+                MessageBox.Show("No audio type selected.");
+                return true;
+            }
+            return false;
         }
 
         public void ClearFileList()
