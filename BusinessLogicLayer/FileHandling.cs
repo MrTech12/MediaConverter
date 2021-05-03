@@ -4,10 +4,10 @@ using System.Text;
 
 namespace BusinessLogicLayer
 {
-    public abstract class FileHandling
+    public interface FileHandling
     {
-        public abstract void ChangeFiletype();
+        void ChangeFiletype();
 
-        public abstract void CreateNewFile();
+        void CreateNewFile();
     }
 }

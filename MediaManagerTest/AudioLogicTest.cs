@@ -9,8 +9,8 @@ namespace MediaManagerTest
     {
         AudioFileHandling audioFileHandling;
         private List<AudioType> selectedAudioTypes = new List<AudioType>();
-        int before;
-        int after;
+        int audioAmountBeforeConversion;
+        int audioAmountAfterConversion;
 
         [TestMethod]
         public void ChangeToWAVType()
@@ -22,14 +22,14 @@ namespace MediaManagerTest
             audioFileHandling = new AudioFileHandling(selectedFilePaths, selectedAudioTypes);
 
             // act
-            before = audioFileHandling.AudioFiles.Count;
+            audioAmountBeforeConversion = audioFileHandling.AudioFiles.Count;
             audioFileHandling.ChangeFiletype();
-            after = audioFileHandling.AudioFiles.Count;
+            audioAmountAfterConversion = audioFileHandling.AudioFiles.Count;
             audioFiles = audioFileHandling.AudioFiles;
 
             // assert
-            Assert.AreEqual(0, before);
-            Assert.AreEqual(2, after);
+            Assert.AreEqual(0, audioAmountBeforeConversion);
+            Assert.AreEqual(2, audioAmountAfterConversion);
             Assert.AreEqual(@"C:\tmp\1.wav", audioFiles[0]);
         }
 
@@ -43,14 +43,14 @@ namespace MediaManagerTest
             audioFileHandling = new AudioFileHandling(selectedFilePaths, selectedAudioTypes);
 
             // act
-            before = audioFileHandling.AudioFiles.Count;
+            audioAmountBeforeConversion = audioFileHandling.AudioFiles.Count;
             audioFileHandling.ChangeFiletype();
-            after = audioFileHandling.AudioFiles.Count;
+            audioAmountAfterConversion = audioFileHandling.AudioFiles.Count;
             audioFiles = audioFileHandling.AudioFiles;
 
             // assert
-            Assert.AreEqual(0, before);
-            Assert.AreEqual(2, after);
+            Assert.AreEqual(0, audioAmountBeforeConversion);
+            Assert.AreEqual(2, audioAmountAfterConversion);
             Assert.AreEqual("C:\tmp\test2.mp3", audioFiles[1]);
         }
     }
