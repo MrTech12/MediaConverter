@@ -4,8 +4,8 @@ using System.Text;
 
 namespace BusinessLogicLayer.Audio
 {
-    public abstract class AudioType
+    public interface IAudioType
     {
-        public abstract string AddAudioFiletype(string filepath);
+        string AddAudioFiletype(string filepath);
     }
 }

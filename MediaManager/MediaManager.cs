@@ -8,7 +8,7 @@ namespace MediaManager
 {
     public partial class MediaManager : Form
     {
-        List<AudioType> selectedAudioTypes = new List<AudioType>();
+        List<IAudioType> selectedAudioTypes = new List<IAudioType>();
         List<string> filePaths = new List<string>();
         List<string> fileNames = new List<string>();
 
@@ -69,11 +69,11 @@ namespace MediaManager
             {
                 if (filetype == "wav")
                 {
-                    selectedAudioTypes.Add(new TypeWAV());
+                    selectedAudioTypes.Add(new AudioTypeWAV());
                 }
                 else if (filetype == "mp3")
                 {
-                    selectedAudioTypes.Add(new TypeMP3());
+                    selectedAudioTypes.Add(new AudioTypeMP3());
                 }
                 AudioFileHandling audioFileHandling = new AudioFileHandling(filePaths, selectedAudioTypes);
                 audioFileHandling.ChangeFiletype();

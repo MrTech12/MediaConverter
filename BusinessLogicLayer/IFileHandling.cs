@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLogicLayer
 {
-    public interface FileHandling
+    public interface IFileHandling
     {
         void ChangeFiletype();
 
