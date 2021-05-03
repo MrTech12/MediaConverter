@@ -20,7 +20,7 @@ namespace BusinessLogicLayer.Audio
             this.selectedAudioTypes = selectedAudioTypes;
         }
 
-        public override void ChangeFiletype()
+        public void ChangeFiletype()
         {
             foreach (var filePath in this.selectedFilePaths)
             {
@@ -34,7 +34,7 @@ namespace BusinessLogicLayer.Audio
             }
         }
 
-        public override void CreateNewFile()
+        public void CreateNewFile()
         {
             Process process = new Process();
             process.StartInfo.FileName = "ffmpeg.exe";
