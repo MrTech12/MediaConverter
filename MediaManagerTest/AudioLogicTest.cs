@@ -8,7 +8,7 @@ namespace MediaManagerTest
     public class AudioLogicTest
     {
         AudioFileHandling audioFileHandling;
-        private List<AudioType> selectedAudioTypes = new List<AudioType>();
+        private List<IAudioType> selectedAudioTypes = new List<IAudioType>();
         int audioAmountBeforeConversion;
         int audioAmountAfterConversion;
 
@@ -17,7 +17,7 @@ namespace MediaManagerTest
         {
             // arrange
             List<string> audioFiles = new List<string>();
-            selectedAudioTypes.Add(new TypeWAV());
+            selectedAudioTypes.Add(new AudioTypeWAV());
             List<string> selectedFilePaths = new List<string>() { @"C:\tmp\1.mp4", @"C:\tmp\2.mp4" };
             audioFileHandling = new AudioFileHandling(selectedFilePaths, selectedAudioTypes);
 
@@ -38,7 +38,7 @@ namespace MediaManagerTest
         {
             // arrange
             List<string> audioFiles = new List<string>();
-            selectedAudioTypes.Add(new TypeMP3());
+            selectedAudioTypes.Add(new AudioTypeMP3());
             List<string> selectedFilePaths = new List<string>() { "C:\tmp\test1.mp4", "C:\tmp\test2.mp4" };
             audioFileHandling = new AudioFileHandling(selectedFilePaths, selectedAudioTypes);
 

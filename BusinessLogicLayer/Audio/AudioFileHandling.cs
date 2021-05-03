@@ -4,17 +4,17 @@ using System.Diagnostics;
 
 namespace BusinessLogicLayer.Audio
 {
-    public class AudioFileHandling : FileHandling
+    public class AudioFileHandling : IFileHandling
     {
-        private List<AudioType> selectedAudioTypes = new List<AudioType>();
+        private List<IAudioType> selectedAudioTypes = new List<IAudioType>();
         private List<string> selectedFilePaths = new List<string>();
         private List<string> audioFiles = new List<string>();
 
         public List<string> SelectedFiles { get { return this.selectedFilePaths; } set { this.selectedFilePaths = value; } }
         public List<string> AudioFiles { get { return this.audioFiles; } set { this.audioFiles = value; } }
-        public List<AudioType> AudioTypes { get { return this.selectedAudioTypes; } set { this.selectedAudioTypes = value; } }
+        public List<IAudioType> AudioTypes { get { return this.selectedAudioTypes; } set { this.selectedAudioTypes = value; } }
 
-        public AudioFileHandling(List<string> selectedFilePaths, List<AudioType> selectedAudioTypes)
+        public AudioFileHandling(List<string> selectedFilePaths, List<IAudioType> selectedAudioTypes)
         {
             this.selectedFilePaths = selectedFilePaths;
             this.selectedAudioTypes = selectedAudioTypes;

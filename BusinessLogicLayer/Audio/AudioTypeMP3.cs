@@ -4,9 +4,9 @@ using System.Text;
 
 namespace BusinessLogicLayer.Audio
 {
-    public class TypeMP3 : AudioType
+    public class AudioTypeMP3 : IAudioType
     {
-        public override string AddAudioFiletype(string filename)
+        public string AddAudioFiletype(string filename)
         {
             return filename += ".mp3";
         }
