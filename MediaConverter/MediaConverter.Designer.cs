@@ -1,6 +1,7 @@
-﻿namespace MediaManager
+﻿
+namespace MediaConverter
 {
-    partial class MediaManager
+    partial class MediaConverter
     {
         /// <summary>
         ///  Required designer variable.
