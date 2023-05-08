@@ -16,6 +16,7 @@ namespace MediaConverter
         List<IAudioType> selectedAudioTypes = new List<IAudioType>();
         List<string> filePaths = new List<string>();
         List<string> fileNames = new List<string>();
+        List<string> fileTypes = new List<string>() { "wav", "mp3", "m4a", "avi", "mov", "mp4", "WAV", "MP3", "M4A", "AVI", "MOV", "MP4" };
 
         OpenFileDialog fileDialog = new OpenFileDialog();
 
@@ -23,26 +24,11 @@ namespace MediaConverter
         {
             InitializeComponent();
         }
-        private void selectFolderBT_Click(object sender, EventArgs e)
-        {
-            GetSelectedFile();
-            ShowFileName();
-        }
-
-        private void extractAudioBT_Click(object sender, EventArgs e)
-        {
-            ExtractAudio(audioFiletypeCB.GetItemText(audioFiletypeCB.SelectedItem));
-        }
-
-        private void clearListBT_Click(object sender, EventArgs e)
-        {
-            ClearFileList();
-        }
 
         //TODO: add ability to detect more media filetypes.
-        public void GetSelectedFile()
+        public void GetSelectedFiles()
         {
-            fileDialog.Filter = "All Media Files|*.wav;*.mp3;*.avi;*.mov;*.mp4;*.WAV;*.MP3;*.AVI;*.MOV;*.MP4;";
+            fileDialog.Filter = "All Media Files|*.wav;*.mp3;*.m4a;*.avi;*.mov;*.mp4;*.WAV;*.MP3;*.M4A;*.AVI;*.MOV;*.MP4;";
             fileDialog.Multiselect = true;
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -54,12 +40,12 @@ namespace MediaConverter
 
                 foreach (var item in filePaths)
                 {
-                    fileNames = fileDialog.SafeFileNames.ToList(); //Storing only the filenames, not the full path.
+                    fileNames = fileDialog.SafeFileNames.ToList();
                 }
             }
         }
 
-        private void ShowFileName()
+        private void ShowFileNames()
         {
             foreach (var item in fileNames)
             {
@@ -67,48 +53,65 @@ namespace MediaConverter
             }
         }
 
-        public void ExtractAudio(string filetype)
+        public void ConvertFile(string convertOption)
         {
-            if (!CheckEmptyInput())
+            if (IsUserInputValid())
             {
-                if (filetype == "wav")
+                if (convertOption.Contains("wav"))
                 {
                     selectedAudioTypes.Add(new AudioTypeWAV());
                 }
-                else if (filetype == "mp3")
+                else if (convertOption.Contains("mp3"))
                 {
                     selectedAudioTypes.Add(new AudioTypeMP3());
                 }
+
                 AudioFileHandling audioFileHandling = new AudioFileHandling(filePaths, selectedAudioTypes);
                 audioFileHandling.ChangeFiletype();
                 audioFileHandling.CreateNewFile();
 
-                ClearFileList();
-                MessageBox.Show("Audio extracted.");
+                ClearFileLists();
+                MessageBox.Show("Conversion completed. The files are stored in your 'Downloads' folder.");
             }
         }
 
-        public bool CheckEmptyInput()
+        public bool IsUserInputValid()
         {
             if (filesListView.Items.Count == 0)
             {
                 MessageBox.Show("No files selected.");
-                return true;
+                return false;
             }
-            else if (audioFiletypeCB.SelectedIndex < 0)
+            else if (convertOptionCB.SelectedIndex < 0)
             {
-                MessageBox.Show("No audio type selected.");
-                return true;
+                MessageBox.Show("No convertion option selected.");
+                return false;
             }
-            return false;
+            return true;
         }
 
-        public void ClearFileList()
+        public void ClearFileLists()
         {
             filePaths.Clear();
             fileNames.Clear();
             filesListView.Items.Clear();
             selectedAudioTypes.Clear();
+        }
+
+        private void selectFolderBT_Click(object sender, EventArgs e)
+        {
+            GetSelectedFiles();
+            ShowFileNames();
+        }
+
+        private void convertBT_Click(object sender, EventArgs e)
+        {
+            ConvertFile(convertOptionCB.GetItemText(convertOptionCB.SelectedItem));
+        }
+
+        private void clearListBT_Click(object sender, EventArgs e)
+        {
+            ClearFileLists();
         }
     }
 }
